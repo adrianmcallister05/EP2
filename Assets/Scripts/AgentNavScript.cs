@@ -82,7 +82,7 @@ public class AgentNavScript : MonoBehaviour
     {
         agentStamina -= 0.2f;
 
-        if (agentStamina <= 500) {
+        if (agentStamina <= 400) {
             agentmode = 2;
         }
 
