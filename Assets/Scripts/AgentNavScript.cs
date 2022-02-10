@@ -136,7 +136,6 @@ public class AgentNavScript : MonoBehaviour
         if (agentmode == 1)
         {
             Debug.Log("Getting food");
-            FoodDetection();
         }
 
         if (agentmode == 2) {
