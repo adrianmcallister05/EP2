@@ -14,7 +14,7 @@ public class FoodSpawnScript : MonoBehaviour
 
     void Start()
     {
-        foodCount = Random.Range(10, 15);  
+        foodCount = Random.Range(10, 20);  
         foodStop = 0;
         InvokeRepeating("FoodSpawn", 0f, 0.05f);
     }

@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7496417298052482075}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17, y: 0, z: 5}
+  m_LocalPosition: {x: -11, y: 0, z: 17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -138,13 +138,15 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   home: {x: 0, y: 0, z: 0}
   agentmode: 0
+  HomeTF: 0
+  ReproduceTF: 0
+  DestTF: 0
   wanderx: 0
   wandery: 0
   wanderz: 0
-  DestTF: 0
   agentStamina: 0
-  HomeTF: 0
-  ReproduceTF: 0
+  speed: 0
+  sense: 0
 --- !u!54 &99056228134414254
 Rigidbody:
   m_ObjectHideFlags: 0

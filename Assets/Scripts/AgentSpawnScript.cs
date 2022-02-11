@@ -16,7 +16,7 @@ public class AgentSpawnScript : MonoBehaviour
 
     void Start()
     {
-        agentCount = Random.Range(10, 15);  
+        VariableLibrary.agentCount = Random.Range(10, 15);  
         agentStop = 0;
         InvokeRepeating("AgentSpawn", 0f, 0.05f);
     }
@@ -49,7 +49,7 @@ public class AgentSpawnScript : MonoBehaviour
 
     void Update()
     {
-        if(agentStop == agentCount) {
+        if(agentStop == VariableLibrary.agentCount) {
             CancelInvoke("AgentSpawn");
         }   
     }

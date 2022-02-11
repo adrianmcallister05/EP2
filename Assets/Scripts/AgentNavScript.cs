@@ -10,26 +10,34 @@ public class AgentNavScript : MonoBehaviour
     public GameObject foodCheck;
     public Vector3 destination;
     public Vector3 home;
+
     public float agentmode;
     private float foodCollected;
+    
+    public bool HomeTF;
+    public bool ReproduceTF;
+    public bool DestTF;
+   
     public float wanderx;
     public float wandery;
     public float wanderz;
-    public bool DestTF;
+    
     public float agentStamina;
-    public bool HomeTF;
-    public bool ReproduceTF;
+    public float speed;
+    public float sense;
 
     void Start()
     {
         agentmode = 0;
         foodCollected = 0; 
+        VariableLibrary.agentNoStam = 0;
         DestTF = false;
         HomeTF = false;
         ReproduceTF = false;
         InvokeRepeating("WanderReset", 0f, 2f);
         agentStamina = 1500;
         home = agent.transform.position;
+        speed = agent.GetComponent<NavMeshAgent>().speed = Random.Range(2f, 5f);
     }
 
     void WanderReset() 
@@ -50,7 +58,7 @@ public class AgentNavScript : MonoBehaviour
 
     void FoodDetection()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(agent.transform.position, 3);
+        Collider[] hitColliders = Physics.OverlapSphere(agent.transform.position, speed);
         for (int i = 0; i < hitColliders.Length; i++)
         {
             GameObject hitCollider = hitColliders[i].gameObject;
@@ -80,7 +88,7 @@ public class AgentNavScript : MonoBehaviour
     
     void Update()
     {
-        agentStamina -= 0.2f;
+        agentStamina -= ((speed*speed)/100) + (sense/100);
 
         if (agentStamina <= 400) {
             agentmode = 2;
@@ -91,7 +99,7 @@ public class AgentNavScript : MonoBehaviour
         }
         
         if (agentStamina <= 0) {
-            
+            VariableLibrary.agentNoStam += 1;
             Collider[] hitColliders2 = Physics.OverlapSphere(agent.transform.position, 2);
             for (int i = 0; i < hitColliders2.Length; i++)
             {
@@ -113,11 +121,13 @@ public class AgentNavScript : MonoBehaviour
                 }
                 else if (foodCollected == 1) {
                     Debug.Log("I survived!");
+                    Start();
                 }
                 else if (foodCollected >= 2) {
                     if (ReproduceTF == false){
                         Reproduce();
                         ReproduceTF = true;
+                        Start();
                     }
                 }
             }
